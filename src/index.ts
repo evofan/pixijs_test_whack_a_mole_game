@@ -239,6 +239,23 @@ class CardGame {
 
   public mouseEnabled: boolean = true;
 
+  // モグラたたき用
+  public audioclip: any; // オーディオ用１，２
+  public pict: string[]; // 画像を入れる配列
+
+  public speed: number = 800; // モグラを出すスピード（モグラの上下スピードでなく、次のモグラを出す間隔？）
+  public time: number = 10; //モグラの出る回数
+  public mole: number; // モグラの出る穴番号
+  public score: number; //スコア
+  public cardN: number[] = []; //表示する絵の番号を入れる配列
+  public x: number; //絵のx座標
+  public y: number; //絵のy座標
+  public cardWidthN: number; //絵の横幅
+  public cardHeightN: number; //絵の縦幅
+  public margin: number; //余白
+
+  public kikker: boolean = null; //アニメーション用
+
   /**
    * Initialize the card order.
    */
@@ -268,7 +285,23 @@ class CardGame {
     pic_cat.x = WIDTH / 2 - pic_cat.width / 2 + 110;
     pic_cat.y = 550;
     container.addChild(pic_cat);
+    
+    // 画像ファイルの読み込み
 
+    // 穴の位置（x, y）の設定
+
+    // オーディオファイルの読み込み
+
+    // オフスクリーンの設定
+
+    // 変数の初期化
+    // もぐらの出る回数をリセット
+    // 点数のリセット
+    // 穴だけの状態に戻す（トランプだと裏側に全部する）
+
+    // マウスリスナーの登録
+
+    /*
     // x
     pic_x = new PIXI.Sprite(gameResources.obj_10_data.texture);
     pic_x.scale.x = 0.75;
@@ -453,6 +486,8 @@ class CardGame {
     console.log(`this.stat: ${this.stat}`);
 
     this.shuffle();
+
+    */
   }
 
   /**
@@ -460,6 +495,8 @@ class CardGame {
    */
   public shuffle(): void {
     console.log("shuffle()");
+
+    /*
     this.count = 0;
     this.stat.map((idx) => {
       this.stat[idx] = 0;
@@ -491,6 +528,7 @@ class CardGame {
     console.log(`this.card(After sorting): ${this.card}`); // ex. this.card: 5,3,6,1,0,4,5,1,3,6,4,0
 
     this.displayCard();
+    */
   }
 
   /**
@@ -498,6 +536,27 @@ class CardGame {
    */
   public displayCard(): void {
     console.log("displayCard()");
+
+    // ※udpate()
+
+    // 読み込み時のメッセージ（ロード待ち）の表示
+
+    // バックをオレンジで塗る
+
+    // タイトルの描画
+
+    // カードの描画
+
+    // STARTボタンの描画、※これを押すまで他（トランプだとカード）は押せなくする
+
+    // 点数の表示
+    // 時間（残り回数）が0でならスコアに応じてモグラのセリフを出す
+    // 0でなければ残り回数を表示
+
+    // オフスクリーンのイメージを一気に実際の表示領域に描く
+
+
+    /*
 
     for (let i: number = 0; i < this.cardMaxNum; i++) {
       // set a card on the back
@@ -530,6 +589,7 @@ class CardGame {
       }
     }
     console.log("this.cardAll: ", this.cardAll);
+    */
   }
 
   /**
@@ -539,6 +599,19 @@ class CardGame {
   public async onClickTap(e: InteractionEvent) {
     console.log("onClickTap() ", e.target.name);
 
+    // ※元のmousePressed
+
+    // マウスが押された座標を取得
+
+    // 押された場所がスタートボタン内なら穴の絵をセットし直す
+
+    // マウスで何列目が押されたか
+    // マウスで何行目が押されたか
+    // colsとrowsから穴番号を計算
+    // 穴holeがモグラnnの出てる場所をイコールなら点数加算、叩いた音再生
+    // ハズレなら、トンカチの絵を表示、外れた音再生
+
+    /*
     // se
     cardOpenSound.stop();
     cardOpenSound.play();
@@ -659,7 +732,48 @@ class CardGame {
     }
 
     this.mouseEnabled = true;
+    */
   }
+
+  public async onMousExited(e: InteractionEvent) {
+    console.log("onMousExited() ", e.target.name);
+
+    function start(){
+      // スレッドを実行させる
+    }
+
+    function stop(){
+      // スレッドを停止させる
+      // オーディオを止める
+
+    }
+
+    function run(){
+      // イメージが全部読み込まれるまで待つ
+
+      // 実行中のスレッドをチェック
+
+      // タイム（回数）が0になるまで繰り返し
+
+      // 乱数でモグラが出る穴holeを決める→前は選択してからめくったが、今回は最初に設定した所とめくったと所が合うか調べる
+      
+      // 再描画
+      
+      // 全てを穴だけの状態に戻す
+      // 回数を1減らす
+
+    }
+  
+  }
+
+  private startGame(): void {
+      // 変数の初期化
+      // モグラの出る回数をリセット
+      // スコアのリセット
+      // 全てを穴だけの状態に戻す
+      // start()
+  }
+
 
   /**
    * Clear the game
