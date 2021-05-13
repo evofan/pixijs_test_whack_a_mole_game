@@ -16,7 +16,7 @@ import {
   InteractionEvent,
   Sprite,
 } from "pixi.js";
-import { shuffle } from "gsap/all";
+import { random, shuffle } from "gsap/all";
 
 // register the plugin
 gsap.registerPlugin(PixiPlugin);
@@ -118,6 +118,8 @@ let pic_hole: PIXI.Sprite;
 let pic_cat: PIXI.Sprite;
 let pic_x: PIXI.Sprite;
 
+let pic_mole_1: PIXI.Sprite;
+
 // animation sprite
 let cardShine1: PIXI.AnimatedSprite;
 let cardShine2: PIXI.AnimatedSprite;
@@ -152,6 +154,10 @@ loader.add("obj_7_data", ASSETS.ASSET_OBJ7);
 loader.add("obj_8_data", ASSETS.ASSET_OBJ8);
 loader.add("obj_9_data", ASSETS.ASSET_OBJ9);
 loader.add("obj_10_data", ASSETS.ASSET_OBJ10);
+
+loader.add("obj_11_data", ASSETS.ASSET_OBJ11);
+loader.add("obj_12_data", ASSETS.ASSET_OBJ12);
+loader.add("obj_13_data", ASSETS.ASSET_OBJ13);
 
 loader.load((loader: PIXI.Loader, resources: any) => {
   console.log(loader);
@@ -240,6 +246,7 @@ class CardGame {
   public mouseEnabled: boolean = true;
 
   // モグラたたき用
+  /*
   public audioclip: any; // オーディオ用１，２
   public pict: string[]; // 画像を入れる配列
 
@@ -253,8 +260,11 @@ class CardGame {
   public cardWidthN: number; //絵の横幅
   public cardHeightN: number; //絵の縦幅
   public margin: number; //余白
+  */
 
-  public kikker: boolean = null; //アニメーション用
+  // private intervalId:
+
+  public kikker: boolean = false; //アニメーション用
 
   /**
    * Initialize the card order.
@@ -285,7 +295,7 @@ class CardGame {
     pic_cat.x = WIDTH / 2 - pic_cat.width / 2 + 110;
     pic_cat.y = 550;
     container.addChild(pic_cat);
-    
+
     // 画像ファイルの読み込み
 
     // 穴の位置（x, y）の設定
@@ -485,9 +495,17 @@ class CardGame {
     }
     console.log(`this.stat: ${this.stat}`);
 
-    this.shuffle();
-
     */
+
+    // mole
+    pic_mole_1 = new PIXI.Sprite(gameResources.obj_11_data.texture);
+    pic_mole_1.scale.x = 0.75;
+    pic_mole_1.scale.y = 0.75;
+    pic_mole_1.x = WIDTH / 2 - pic_mole_1.width / 2;
+    pic_mole_1.y = 20;
+    container.addChild(pic_mole_1);
+
+    this.shuffle();
   }
 
   /**
@@ -526,9 +544,8 @@ class CardGame {
       this.card[rndNum] = tempNum;
     }
     console.log(`this.card(After sorting): ${this.card}`); // ex. this.card: 5,3,6,1,0,4,5,1,3,6,4,0
-
-    this.displayCard();
     */
+    this.displayCard();
   }
 
   /**
@@ -554,7 +571,6 @@ class CardGame {
     // 0でなければ残り回数を表示
 
     // オフスクリーンのイメージを一気に実際の表示領域に描く
-
 
     /*
 
@@ -590,6 +606,22 @@ class CardGame {
     }
     console.log("this.cardAll: ", this.cardAll);
     */
+
+    // モグラ叩きの回数、この回数分、モグラを穴から出す
+    let distance: number = 1000;
+    let time: number = 10;
+    const reduceTime = () => {
+      console.log(time--);
+      pic_mole_1.x = randomInt(100, 400);
+      pic_mole_1.y = randomInt(100, 400);
+    };
+    const intervalId = setInterval(() => {
+      reduceTime();
+      if (time <= 0) {
+        clearInterval(intervalId);
+        console.log("time end");
+      }
+    }, distance);
   }
 
   /**
@@ -738,42 +770,33 @@ class CardGame {
   public async onMousExited(e: InteractionEvent) {
     console.log("onMousExited() ", e.target.name);
 
-    function start(){
+    function start() {
       // スレッドを実行させる
     }
 
-    function stop(){
+    function stop() {
       // スレッドを停止させる
       // オーディオを止める
-
     }
 
-    function run(){
+    function run() {
       // イメージが全部読み込まれるまで待つ
-
       // 実行中のスレッドをチェック
-
       // タイム（回数）が0になるまで繰り返し
-
       // 乱数でモグラが出る穴holeを決める→前は選択してからめくったが、今回は最初に設定した所とめくったと所が合うか調べる
-      
       // 再描画
-      
       // 全てを穴だけの状態に戻す
       // 回数を1減らす
-
     }
-  
   }
 
   private startGame(): void {
-      // 変数の初期化
-      // モグラの出る回数をリセット
-      // スコアのリセット
-      // 全てを穴だけの状態に戻す
-      // start()
+    // 変数の初期化
+    // モグラの出る回数をリセット
+    // スコアのリセット
+    // 全てを穴だけの状態に戻す
+    // start()
   }
-
 
   /**
    * Clear the game

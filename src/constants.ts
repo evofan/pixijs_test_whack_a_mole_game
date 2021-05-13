@@ -18,8 +18,12 @@ export const ASSETS: {
   ASSET_OBJ8: string;
   ASSET_OBJ9: string;
   ASSET_OBJ10: string;
+
+  ASSET_OBJ11: string;
+  ASSET_OBJ12: string;
+  ASSET_OBJ13: string;
 } = {
-  ASSET_BG: "assets/images/pic_bg_redcover_800x800.jpg",
+  ASSET_BG: "assets/images/pic_bg_greencover_800x800.jpg",
   ASSET_OBJ1: "assets/images/cards_trumpx20.json",
   ASSET_OBJ2: "assets/images/pic_gametitle2.png",
   ASSET_OBJ3: "assets/images/pic_light_1.png",
@@ -30,6 +34,10 @@ export const ASSETS: {
   ASSET_OBJ8: "assets/images/pic_temp_hole.png",
   ASSET_OBJ9: "assets/images/pic_temp_cat.png",
   ASSET_OBJ10: "assets/images/pic_temp_x.png",
+
+  ASSET_OBJ11: "assets/images/pic_mole_1.png",
+  ASSET_OBJ12: "assets/images/pic_mole_2.png",
+  ASSET_OBJ13: "assets/images/pic_hammer.png",
 };
 
 export const GAMES: { FPS: number } = {
