@@ -2,6 +2,9 @@
 
 <img src="https://evofan.github.io/pixijs_test_whack_a_mole_game/screenshot/pic_screenshot6.jpg" width="50%">  
 
+Complete image   
+<img src="https://evofan.github.io/pixijs_test_whack_a_mole_game/screenshot/pic_game_image.jpg" width="50%">  
+
 Demo  
 [https://evofan.github.io/pixijs_test_whack_a_mole_game/dist/](https://evofan.github.io/pixijs_test_whack_a_mole_game/dist/)  
 
