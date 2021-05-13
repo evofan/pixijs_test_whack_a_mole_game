@@ -5,6 +5,7 @@ import { Asset, WebpackPluginInstance as loader } from "webpack";
 import { STAGES, ASSETS, GAMES } from "./constants";
 import { setText } from "./helper/setText";
 import { randomInt } from "./helper/randomInt";
+import { intervalFunc } from "./helper/intervalFunc";
 import Stats from "stats.js";
 import { Howl, Howler } from "howler"; // npm install --save @types/howler
 import { gsap } from "gsap"; // npm install -D @types/gsap
@@ -608,6 +609,7 @@ class CardGame {
     */
 
     // モグラ叩きの回数、この回数分、モグラを穴から出す
+    /*
     let distance: number = 1000;
     let time: number = 10;
     const reduceTime = () => {
@@ -622,6 +624,15 @@ class CardGame {
         console.log("time end");
       }
     }, distance);
+    */
+    let repeatCount: number = 10;
+    let distance: number = 1000;
+    const randomMoveMole = () => {
+      pic_mole_1.x = randomInt(100, 400);
+      pic_mole_1.y = randomInt(100, 400);
+    };
+
+    intervalFunc(repeatCount, distance, randomMoveMole);
   }
 
   /**
