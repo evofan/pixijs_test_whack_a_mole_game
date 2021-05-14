@@ -23,7 +23,7 @@ export const ASSETS: {
   ASSET_OBJ12: string;
   ASSET_OBJ13: string;
 } = {
-  ASSET_BG: "assets/images/pic_bg_greencover_800x800.jpg",
+  ASSET_BG: "assets/images/pic_bg_grass.jpg",
   ASSET_OBJ1: "assets/images/cards_trumpx20.json",
   ASSET_OBJ2: "assets/images/pic_gametitle2.png",
   ASSET_OBJ3: "assets/images/pic_light_1.png",

@@ -609,27 +609,15 @@ class CardGame {
     */
 
     // モグラ叩きの回数、この回数分、モグラを穴から出す
-    /*
-    let distance: number = 1000;
-    let time: number = 10;
-    const reduceTime = () => {
-      console.log(time--);
-      pic_mole_1.x = randomInt(100, 400);
-      pic_mole_1.y = randomInt(100, 400);
-    };
-    const intervalId = setInterval(() => {
-      reduceTime();
-      if (time <= 0) {
-        clearInterval(intervalId);
-        console.log("time end");
-      }
-    }, distance);
-    */
     let repeatCount: number = 10;
     let distance: number = 1000;
     const randomMoveMole = () => {
-      pic_mole_1.x = randomInt(100, 400);
-      pic_mole_1.y = randomInt(100, 400);
+      // pic_mole_1.x = randomInt(100, 400);
+      // pic_mole_1.y = randomInt(100, 400);
+      let cols:number =randomInt(1, 4); // 前回と同じ位置には出ないようにする？
+      let rows:number =randomInt(1, 3);
+      pic_mole_1.x = this.offsetX + (cols % this.cardCols) * (this.cardWidth + this.cardOffset);
+      pic_mole_1.y = this.offsetY + 100 + (rows % this.cardRows) * (this.cardHeight + this.cardOffset);
     };
 
     intervalFunc(repeatCount, distance, randomMoveMole);
