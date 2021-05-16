@@ -121,6 +121,11 @@ let pic_x: PIXI.Sprite;
 
 let pic_mole_1: PIXI.Sprite;
 
+let pic_hammer: PIXI.Sprite;
+//let target: [number, number]=[-999999,-999999];
+let targetX: number;
+let targetY: number;
+
 // animation sprite
 let cardShine1: PIXI.AnimatedSprite;
 let cardShine2: PIXI.AnimatedSprite;
@@ -192,6 +197,23 @@ text_loading.y = 10;
  */
 const gameLoop = (delta: number): void => {
   // console.log("gameLoop()", delta);
+  // mouse position
+  // let point = app.renderer.plugins.interaction.mouse.global; // don't use eventlistener
+  // let point = renderer.render.plugins.interaction.mouse.global; // don't use eventlistener
+  let point: any = renderer.plugins.interaction.mouse.global; // don't use eventlistener
+  // console.log(point);
+  // Point {x: 313.36645793914795, y: 213.94886016845703}
+  ///*
+  //console.log(point.x);
+  //console.log(point.y);
+  //target[0] = point.x; //err
+  //target[1] = point.y;
+  //  targetX = Math.floor(point.x);
+  //  targetY = Math.floor(point.y);
+
+  pic_hammer.x = Math.floor(point.x) - pic_hammer.width / 2;
+  pic_hammer.y = Math.floor(point.y) - pic_hammer.height / 2;
+  //*/
 };
 
 /**
@@ -296,6 +318,16 @@ class CardGame {
     pic_cat.x = WIDTH / 2 - pic_cat.width / 2 + 110;
     pic_cat.y = 550;
     container.addChild(pic_cat);
+
+    // hammer
+    pic_hammer = new PIXI.Sprite(gameResources.obj_13_data.texture);
+    pic_hammer.scale.x = 0.75;
+    pic_hammer.scale.y = 0.75;
+    pic_hammer.x = WIDTH / 2 - pic_hammer.width / 2;
+    pic_hammer.y = 450;
+    container.addChild(pic_hammer);
+
+    console.log(renderer);
 
     // 画像ファイルの読み込み
 
@@ -614,10 +646,15 @@ class CardGame {
     const randomMoveMole = () => {
       // pic_mole_1.x = randomInt(100, 400);
       // pic_mole_1.y = randomInt(100, 400);
-      let cols:number =randomInt(1, 4); // 前回と同じ位置には出ないようにする？
-      let rows:number =randomInt(1, 3);
-      pic_mole_1.x = this.offsetX + (cols % this.cardCols) * (this.cardWidth + this.cardOffset);
-      pic_mole_1.y = this.offsetY + 100 + (rows % this.cardRows) * (this.cardHeight + this.cardOffset);
+      let cols: number = randomInt(1, 4); // 前回と同じ位置には出ないようにする？
+      let rows: number = randomInt(1, 3);
+      pic_mole_1.x =
+        this.offsetX +
+        (cols % this.cardCols) * (this.cardWidth + this.cardOffset);
+      pic_mole_1.y =
+        this.offsetY +
+        100 +
+        (rows % this.cardRows) * (this.cardHeight + this.cardOffset);
     };
 
     intervalFunc(repeatCount, distance, randomMoveMole);
