@@ -105,6 +105,7 @@ buttonOffRect.visible = false;
 buttonOffRect.interactive = true;
 buttonOffRect.interactiveChildren = false;
 buttonOffRect.buttonMode = false;
+//container.addChild(buttonOffRect);
 
 let rectangles: PIXI.Graphics[] = []; // card hit area
 
@@ -144,6 +145,21 @@ let gameResources: any;
 // sound
 let cardOpenSound: Howl;
 
+
+// text loading
+text_loading = setText(
+  "Loading asset data ....",
+  "Arial",
+  20,
+  0x333333,
+  "left",
+  "normal"
+);
+container.addChild(text_loading);
+text_loading.x = 10;
+text_loading.y = 10;
+requestAnimationFrame(animate);
+
 if (ASSETS.ASSET_BG === "") {
   console.log("Don't use background image.");
 } else {
@@ -178,18 +194,6 @@ loader.onError.add(() => {
   throw Error("load error ...");
 });
 
-// text loading
-text_loading = setText(
-  "Loading asset data ....",
-  "Arial",
-  20,
-  0x333333,
-  "left",
-  "normal"
-);
-container.addChild(text_loading);
-text_loading.x = 10;
-text_loading.y = 10;
 
 /**
  * EnterFrame
@@ -225,13 +229,21 @@ const gameSetup = (): void => {
 
   container.removeChild(text_loading);
 
+     if (ASSETS.ASSET_BG !== "") {
+        bg = new PIXI.Sprite(gameResources.bg_data.texture);
+        container.addChild(bg);
+      }
+
+
+
   // main class
   const cardgame: CardGame = new CardGame();
   cardgame.init();
 
-  // app start
+  // app start*/
   gameLoopFlag = true;
-  requestAnimationFrame(animate); // -> gameLoop start
+  // requestAnimationFrame(animate); // -> gameLoop start
+ 
 };
 
 /**

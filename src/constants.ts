@@ -2,7 +2,7 @@
 export const STAGES: { WIDTH: number; HEIGHT: number; BG_COLOR: number } = {
   WIDTH: 600,
   HEIGHT: 700,
-  BG_COLOR: 0x000000,
+  BG_COLOR: 0xFFFFFF,
 };
 
 // assets
