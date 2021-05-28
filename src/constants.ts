@@ -30,7 +30,7 @@ export const ASSETS: {
   ASSET_OBJ4: "assets/images/pic_light_2.png",
   ASSET_OBJ5: "assets/images/pic_light_3.png",
   ASSET_OBJ6: "assets/images/pic_light_4.png",
-  ASSET_OBJ7: "assets/sounds/card_open.mp3",
+  ASSET_OBJ7: "assets/sounds/gan.mp3",
   ASSET_OBJ8: "assets/images/pic_temp_hole.png",
   ASSET_OBJ9: "assets/images/pic_temp_cat.png",
   ASSET_OBJ10: "assets/images/pic_temp_x.png",

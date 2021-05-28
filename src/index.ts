@@ -87,7 +87,7 @@ container.x = 0;
 container.y = 0;
 container.pivot.x = 0.5;
 container.pivot.y = 0.5;
-container.interactive = false;
+container.interactive = true;
 container.interactiveChildren = true;
 container.buttonMode = false;
 stage.addChild(container);
@@ -145,7 +145,6 @@ let gameResources: any;
 // sound
 let cardOpenSound: Howl;
 
-
 // text loading
 text_loading = setText(
   "Loading asset data ....",
@@ -194,7 +193,6 @@ loader.onError.add(() => {
   throw Error("load error ...");
 });
 
-
 /**
  * EnterFrame
  * @param delta
@@ -229,12 +227,10 @@ const gameSetup = (): void => {
 
   container.removeChild(text_loading);
 
-     if (ASSETS.ASSET_BG !== "") {
-        bg = new PIXI.Sprite(gameResources.bg_data.texture);
-        container.addChild(bg);
-      }
-
-
+  if (ASSETS.ASSET_BG !== "") {
+    bg = new PIXI.Sprite(gameResources.bg_data.texture);
+    container.addChild(bg);
+  }
 
   // main class
   const cardgame: CardGame = new CardGame();
@@ -243,7 +239,6 @@ const gameSetup = (): void => {
   // app start*/
   gameLoopFlag = true;
   // requestAnimationFrame(animate); // -> gameLoop start
- 
 };
 
 /**
@@ -522,6 +517,21 @@ class CardGame {
     };
     container.addChild(cardShine2);
 
+        */
+
+    container.on("tap", (e: InteractionEvent) => {
+      if (this.mouseEnabled) {
+        console.log("rectangle tap!", e.target.name);
+        this.onClickTap(e);
+      }
+    });
+    container.on("click", (e: InteractionEvent) => {
+      if (this.mouseEnabled) {
+        console.log("rectangle click!", e.target.name);
+        this.onClickTap(e);
+      }
+    });
+
     // SE
     cardOpenSound = new Howl({
       src: [gameResources.obj_7_data.url],
@@ -529,10 +539,11 @@ class CardGame {
       loop: false,
       volume: 0.1,
       onend: () => {
-        // console.log("cardOpenSound finished.");
+        console.log("cardOpenSound finished.");
       },
     });
 
+    /*
     // set card state
     for (let i: number = 0; i < this.cardMaxNum; i++) {
       this.stat[i] = 0;
@@ -691,11 +702,11 @@ class CardGame {
     // 穴holeがモグラnnの出てる場所をイコールなら点数加算、叩いた音再生
     // ハズレなら、トンカチの絵を表示、外れた音再生
 
-    /*
     // se
-    cardOpenSound.stop();
+    // cardOpenSound.stop();
     cardOpenSound.play();
 
+    /*
     this.mouseEnabled = false;
     console.log("stat: ", this.stat);
 
